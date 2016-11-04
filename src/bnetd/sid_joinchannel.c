@@ -8,6 +8,7 @@
 #include "packet.h"
 #include "sql.h"
 
+#include "account.h"
 #include "chat.h"
 
 /*
@@ -68,7 +69,7 @@ struct request {
  * PROTOCOL_REGISTER(PROTOCOL_BNETD, 0x0C, packet_bnetd_sid_joinchannel);
  *
  */
-void packet_bnetd_sid_joinchannel(struct connection *conn EINA_UNUSED, struct packet *request) {
+void packet_bnetd_sid_joinchannel(struct connection *conn, struct packet *request) {
   struct request packet;
 
   struct channel *channel;
@@ -77,6 +78,11 @@ void packet_bnetd_sid_joinchannel(struct connection *conn EINA_UNUSED, struct pa
   packet.flags = packet_get_int(request, ENDIAN_LITTLE);
   packet.channel = packet_get_string(request, ENDIAN_LITTLE);
 
+  // if use i already on a channel, then remove him first.
+  if (conn->account->channel != NULL) {
+    chat_channel_account_remove(conn->account);
+  }
+  
   channel = chat_channel_find(packet.channel);
   if (channel) {
     chat_channel_account_add(channel, conn->account);
