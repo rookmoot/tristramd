@@ -141,6 +141,10 @@ void packet_bnetd_sid_logonresponse2(struct connection *conn, struct packet *req
 
     // check user password.
     if (hashing_check_password(password, packet.password_hash, packet.client_token, packet.server_token) == 1) {
+      conn->account->last_login_at = (int)time(NULL);
+      strcpy(conn->account->last_login_ip, (char *)conn->info.ip);
+      sql_update("accounts", conn->account);
+      
       packet_set_int(response, ENDIAN_LITTLE, 0x00); // success
     } else {
       packet_set_int(response, ENDIAN_LITTLE, 0x02); // invalid password
