@@ -200,7 +200,6 @@ static inline int _packet_read_header(struct packet *packet) {
 
     case PROTOCOL_D2GS:
       packet->header.opcode = packet_get_byte(packet, ENDIAN_LITTLE);
-      printf("FOUND : %d\n", packet->header.opcode);
       packet->wdx = 1;
       break;
 
