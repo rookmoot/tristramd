@@ -94,8 +94,6 @@ void packet_bnetd_sid_enterchat(struct connection *conn, struct packet *request)
   // set response message id.
   packet_message_id_set(response, 0x0A);
 
-  printf("%s %s\n", character->name, packet.username);
-  
   if (!strncmp((const char *)character->name, (const char *)packet.username, strlen((char *)packet.username))) {
     packet_set_string(response, ENDIAN_LITTLE, (const char *)character->name);
 
