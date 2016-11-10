@@ -268,6 +268,6 @@ void packet_realm_mcp_requestladderdata(struct connection *conn, struct packet *
   }
 
   if (total > 0) {
-    connection_response_append(conn, response);
+    net_connection_response_append(conn, response);
   }
 }

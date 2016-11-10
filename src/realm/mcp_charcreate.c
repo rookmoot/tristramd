@@ -116,5 +116,5 @@ void packet_realm_mcp_charcreate(struct connection *conn, struct packet *request
     packet_set_int(response, ENDIAN_LITTLE, 0x14); // error creating char.
   }
   free(packet.name);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

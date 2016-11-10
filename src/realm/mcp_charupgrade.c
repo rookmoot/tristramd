@@ -77,5 +77,5 @@ void packet_realm_mcp_charupgrade(struct connection *conn, struct packet *reques
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_realm_mcp_charupgrade not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

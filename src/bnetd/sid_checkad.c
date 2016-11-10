@@ -117,5 +117,5 @@ void packet_bnetd_sid_checkad(struct connection *conn, struct packet *request) {
 
   file_free(file);
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

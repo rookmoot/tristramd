@@ -83,5 +83,5 @@ void packet_bnetd_sid_auth_accountlogonproof(struct connection *conn, struct pac
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_bnetd_sid_auth_accountlogonproof not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

@@ -115,6 +115,7 @@ void packet_realm_mcp_startup(struct connection *conn, struct packet *request) {
   packet_message_id_set(response, 0x01);
   
   conn = net_connection_clone(conn, packet.uuid);
+  printf("FINAL : %p\n", conn->account);
   if (!conn->account) {
     EINA_LOG_CRIT("Failed to find account for this client.");
     EINA_LOG_CRIT("This may be a hack attempt.");
@@ -122,10 +123,10 @@ void packet_realm_mcp_startup(struct connection *conn, struct packet *request) {
 
     // sending error packet result.
     packet_set_int(response, ENDIAN_LITTLE, 0x02);
-    connection_response_append(conn, response);
+    net_connection_response_append(conn, response);
     return;
   }
   
   packet_set_int(response, ENDIAN_LITTLE, 0x00);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

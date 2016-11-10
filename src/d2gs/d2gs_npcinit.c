@@ -75,5 +75,5 @@ void packet_d2gs_d2gs_npcinit(struct connection *conn, struct packet *request) {
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_d2gs_d2gs_npcinit not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

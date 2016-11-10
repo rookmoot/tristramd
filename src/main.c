@@ -92,7 +92,7 @@ int main(void) {
 	    struct packet *p = packet_new(PROTOCOL_D2GS);
 	    packet_message_id_set(p, 0xAF);
 	    packet_set_byte(p, ENDIAN_LITTLE, 0x01);
-	    connection_response_append(conn, p);
+	    net_connection_response_append(conn, p);
 	    
 	  } else {
 	    conn->protocol = PROTOCOL_NONE;
@@ -119,7 +119,7 @@ int main(void) {
 	  }
 
 	  if (selector_connection_can_write(selector, (struct connection *)conn)) {
-	    struct packet *response = connection_response_get(conn);
+	    struct packet *response = net_connection_response_get(conn);
 	    if (response) {
 	      packet_write_to_connection(response, conn);
 	      packet_free(response);

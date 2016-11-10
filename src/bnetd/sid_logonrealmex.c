@@ -128,7 +128,7 @@ void packet_bnetd_sid_logonrealmex(struct connection *conn, struct packet *reque
     packet_set_string(response, ENDIAN_LITTLE, "test");
     
     // send back response.
-    connection_response_append(conn, response);
+    net_connection_response_append(conn, response);
   }
   
   free(packet.realm_title);

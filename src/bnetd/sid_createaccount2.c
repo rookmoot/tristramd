@@ -103,7 +103,7 @@ void packet_bnetd_sid_createaccount2(struct connection *conn, struct packet *req
   } else {
     packet_set_int(response, ENDIAN_LITTLE, 0x04); // error
   }
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 
   free(packet.username);
   free(password);
@@ -111,6 +111,6 @@ void packet_bnetd_sid_createaccount2(struct connection *conn, struct packet *req
   response_setemail = packet_new(PROTOCOL_BNETD);
   if (response_setemail) {
     packet_message_id_set(response_setemail, 0x59);
-    connection_response_append(conn, response_setemail);
+    net_connection_response_append(conn, response_setemail);
   }
 }

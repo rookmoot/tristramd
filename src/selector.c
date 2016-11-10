@@ -66,7 +66,7 @@ int selector_select(struct selector *selector) {
   selector->write_fds = selector->master;
 
   EINA_LIST_FOREACH(selector->conns, l, conn) {
-    if (eina_list_count(conn->queue)) {
+    if (conn->queue && eina_list_count(conn->queue)) {
       can_write = 1;
       break;
     }

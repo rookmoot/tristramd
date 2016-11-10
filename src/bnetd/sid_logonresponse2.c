@@ -135,16 +135,13 @@ void packet_bnetd_sid_logonresponse2(struct connection *conn, struct packet *req
       packet_set_int(response, ENDIAN_LITTLE, 0x06);
       packet_set_string(response, ENDIAN_LITTLE, "Your account has been blocked by an admin.");
       free(packet.username);
-      connection_response_append(conn, response);
+      net_connection_response_append(conn, response);
       return;
     }
 
     // check user password.
     if (hashing_check_password(password, packet.password_hash, packet.client_token, packet.server_token) == 1) {
-      conn->account->last_login_at = (int)time(NULL);
-      strcpy(conn->account->last_login_ip, (char *)conn->info.ip);
-      sql_update("accounts", conn->account);
-      
+      account_set_connected(conn->account);
       packet_set_int(response, ENDIAN_LITTLE, 0x00); // success
     } else {
       packet_set_int(response, ENDIAN_LITTLE, 0x02); // invalid password
@@ -154,13 +151,13 @@ void packet_bnetd_sid_logonresponse2(struct connection *conn, struct packet *req
   }
   
   free(packet.username);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 
   if (need_set_email == 1) {
     response_setemail = packet_new(PROTOCOL_BNETD);
     if (response_setemail) {
       packet_message_id_set(response_setemail, 0x59);
-      connection_response_append(conn, response_setemail);
+      net_connection_response_append(conn, response_setemail);
     }
   }
 }

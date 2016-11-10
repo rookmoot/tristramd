@@ -58,5 +58,5 @@ void packet_d2gs_d2gs_potiontomercenary(struct connection *conn, struct packet *
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_d2gs_d2gs_potiontomercenary not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

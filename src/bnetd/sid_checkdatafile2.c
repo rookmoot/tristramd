@@ -82,5 +82,5 @@ void packet_bnetd_sid_checkdatafile2(struct connection *conn, struct packet *req
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_bnetd_sid_checkdatafile2 not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

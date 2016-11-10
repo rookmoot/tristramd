@@ -111,5 +111,5 @@ void packet_bnetd_sid_enterchat(struct connection *conn, struct packet *request)
   free(packet.username);
   free(packet.statstring);
   
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

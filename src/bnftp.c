@@ -46,5 +46,5 @@ void packet_bnftp(struct connection *conn, struct packet *request) {
   
   free(filename);
   file_free(file);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

@@ -58,5 +58,5 @@ void packet_bnetd_sid_netgameport(struct connection *conn, struct packet *reques
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_bnetd_sid_netgameport not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

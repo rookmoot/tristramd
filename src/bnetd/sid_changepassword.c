@@ -126,5 +126,5 @@ void packet_bnetd_sid_changepassword(struct connection *conn, struct packet *req
   }
   
   free(packet.username);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

@@ -30,10 +30,10 @@ struct sockinfo {
 
 struct connection {
   int socket;
-  
+
   uint32_t uuid;
   struct sockinfo info;
-
+  
   enum connection_state state;
   enum protocol protocol;
 
@@ -79,7 +79,7 @@ struct connection *net_connection_clone(struct connection *conn, uint32_t uuid);
 const char *net_connection_ip_get(struct connection *conn);
 unsigned short net_connection_port_get(struct connection *conn);
 
-void connection_response_append(struct connection *conn, struct packet *response);
-struct packet *connection_response_get(struct connection *conn);
+void net_connection_response_append(struct connection *conn, struct packet *response);
+struct packet *net_connection_response_get(struct connection *conn);
 
 #endif

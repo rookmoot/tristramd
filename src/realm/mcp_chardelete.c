@@ -100,5 +100,5 @@ void packet_realm_mcp_chardelete(struct connection *conn, struct packet *request
   }
 
   free(packet.character_name);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

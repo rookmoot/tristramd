@@ -147,8 +147,11 @@ struct connection *net_server_accept(struct server *srv) {
   }
 
   conn->uuid = (uint32_t)rand();
+
   conn->srv = srv;
   conn->state = CONNECTION_STATE_CONNECTED;
+  conn->queue = NULL;
+  
   srv->conns = eina_list_append(srv->conns, conn);
   _all_conns = eina_list_append(_all_conns, conn);
   
@@ -181,11 +184,11 @@ uint32_t net_connection_uuid_get(struct connection *conn) {
 
 struct connection *net_connection_clone(struct connection *conn, uint32_t uuid) {
   Eina_List *l;
-  struct account *account = NULL;
   struct connection *found = NULL;
 
   EINA_LIST_FOREACH(_all_conns, l, found) {
-    if (found->uuid == uuid) {
+    printf("FOUND: %d %p\n", found->uuid, found->account);
+    if (found->uuid == uuid && found->account != NULL) {
       break;
     }
   }
@@ -196,9 +199,10 @@ struct connection *net_connection_clone(struct connection *conn, uint32_t uuid) 
   }
 
   if (!strncmp(conn->info.ip, found->info.ip, strlen(found->info.ip))) {
+    printf("IP matching.\n");
     conn->uuid = found->uuid;
-    account = (struct account *)found->account;
-    conn->account = (struct account *)account;
+    conn->account = (struct account *)found->account;
+    printf("ACC : %p == %p\n", conn->account, found->account);
     return conn;
   }
   return NULL;
@@ -212,11 +216,11 @@ unsigned short net_connection_port_get(struct connection *conn) {
   return conn->info.port;
 }
 
-void connection_response_append(struct connection *conn, struct packet *response) {
+void net_connection_response_append(struct connection *conn, struct packet *response) {
   conn->queue = eina_list_append(conn->queue, response);
 }
 
-struct packet *connection_response_get(struct connection *conn) {
+struct packet *net_connection_response_get(struct connection *conn) {
   struct packet *packet = NULL;
   
   packet = (struct packet *)eina_list_data_get(conn->queue);

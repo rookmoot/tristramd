@@ -3,6 +3,7 @@
 #include <Eina.h>
 
 #include "tristram.h"
+#include "utils.h"
 #include "sql.h"
 #include "net.h"
 #include "character.h"
@@ -52,6 +53,25 @@ void account_connection_set(struct account *account, struct connection *conn) {
   conn->account = account;
 }
 
+void account_set_connected(struct account *account) {
+  //  Eina_List *l = NULL;
+  //struct connection *conn = NULL;
+  
+  account->last_login_at = (int)time(NULL);
+  strcpy(account->last_login_ip, (char *)account->connection->info.ip);
+  sql_update("accounts", account);
+
+  /*
+  EINA_LIST_FOREACH(net_all_connections_get(), l, conn) {
+    if (conn->uuid != account->connection->uuid) {
+      if (conn->unik > 0 && conn->account && conn->account->id == account->id) {
+	printf("conn : %d\n", conn->unik);
+      }
+    }
+  }
+  */
+}
+
 struct connection *account_connection_get(struct account *account) {
   return account->connection;
 }
@@ -66,7 +86,7 @@ char *account_chat_name_get(struct account *account, const int full) {
 
   EINA_SAFETY_ON_NULL_RETURN_VAL(account, "");
   EINA_SAFETY_ON_NULL_RETURN_VAL(account->character, "");
-  
+
   memset(name, 0, 1024);
   if (full) {
     snprintf(name, 1024, "%s*%s", account->character->name, account->username);
@@ -112,6 +132,4 @@ struct game *account_game_get(struct account *account) {
   EINA_SAFETY_ON_NULL_RETURN_VAL(account, NULL);
   return account->game;
 }
-
-
 

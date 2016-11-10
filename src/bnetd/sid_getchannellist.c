@@ -81,7 +81,7 @@ void packet_bnetd_sid_getchannellist(struct connection *conn, struct packet *req
   packet_message_id_set(response, 0x0B);
   eina_hash_foreach(chat_channel_list_get(), packet_bnetd_sid_getchannellist_foreach_cb, response);
   
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }
 
 

@@ -33,6 +33,8 @@ void account_free(struct account *account);
 void account_connection_set(struct account *account, struct connection *conn);
 struct connection *account_connection_get(struct account *account);
 
+void account_set_connected(struct account *account);
+
 unsigned int account_chat_flags_get(struct account *account);
 char *account_chat_name_get(struct account *account, const int full);
 char *account_chat_statstring_get(struct account *account, const int full);

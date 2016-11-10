@@ -133,12 +133,12 @@ void packet_d2gs_d2gs_gamelogon(struct connection *conn, struct packet *request)
   packet_set_byte(response, ENDIAN_LITTLE, 0x09);
   packet_set_byte(response, ENDIAN_LITTLE, 0x2e);
   packet_set_byte(response, ENDIAN_LITTLE, 0xef);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 
   response = packet_new(PROTOCOL_D2GS_COMPRESSED);
   if (!response) {
     return;
   }
   packet_message_id_set(response, 0x5C);
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

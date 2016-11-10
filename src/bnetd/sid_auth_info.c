@@ -169,5 +169,5 @@ void packet_bnetd_sid_auth_info(struct connection *conn, struct packet *request)
   free(packet.country_abbreviation);
   free(packet.country);
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

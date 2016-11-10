@@ -78,5 +78,5 @@ void packet_bnetd_sid_queryrealms2(struct connection *conn, struct packet *reque
   packet_set_string(response, ENDIAN_LITTLE, name);
   packet_set_string(response, ENDIAN_LITTLE, description);
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

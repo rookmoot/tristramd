@@ -69,5 +69,5 @@ void packet_realm_mcp_motd(struct connection *conn, struct packet *request EINA_
     packet_set_string(response, ENDIAN_LITTLE, (const char *)file_chunk_data_get(file, &size));
     file_free(file);
   }
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

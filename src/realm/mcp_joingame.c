@@ -115,5 +115,5 @@ void packet_realm_mcp_joingame(struct connection *conn, struct packet *request) 
     packet_set_int(response, ENDIAN_LITTLE, (uint32_t)game_account_join(game, conn->account));
   }
   
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

@@ -64,5 +64,5 @@ void packet_d2gs_d2gs_swap2handeditem(struct connection *conn, struct packet *re
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_d2gs_d2gs_swap2handeditem not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

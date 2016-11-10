@@ -96,5 +96,5 @@ void packet_bnetd_sid_news_info(struct connection *conn, struct packet *request)
   packet_set_int(response, ENDIAN_LITTLE, time(NULL));
   packet_set_int(response, ENDIAN_LITTLE, time(NULL));
   
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

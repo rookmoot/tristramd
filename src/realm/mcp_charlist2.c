@@ -119,5 +119,5 @@ void packet_realm_mcp_charlist2(struct connection *conn, struct packet *request)
     packet_set_short(response, ENDIAN_LITTLE, 0x00);
   }
   
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

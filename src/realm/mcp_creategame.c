@@ -127,5 +127,5 @@ void packet_realm_mcp_creategame(struct connection *conn, struct packet *request
     packet_set_short(response, ENDIAN_LITTLE, 0x00);
     packet_set_int(response, ENDIAN_LITTLE, 0x20);
   }
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

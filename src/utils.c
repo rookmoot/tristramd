@@ -35,3 +35,16 @@ void utils_hex_to_str(char *in, char *out) {
     out++;
   }
 }
+
+
+int utils_in_array(uint32_t n, uint32_t *arr, unsigned int size) {
+  unsigned int i;
+
+  for (i = 0; i < size; i++) {
+    printf("CMP : %d == %d\n", arr[i], n);
+    if (arr[i] == n) {
+      return 1;
+    }
+  }
+  return 0;
+}

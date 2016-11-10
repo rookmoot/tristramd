@@ -342,5 +342,5 @@ void packet_bnetd_sid_getadvlistex(struct connection *conn, struct packet *reque
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_bnetd_sid_getadvlistex not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

@@ -98,5 +98,5 @@ void packet_bnetd_sid_cdkey3(struct connection *conn, struct packet *request) {
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_bnetd_sid_cdkey3 not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

@@ -142,6 +142,6 @@ int chat_event_send(int event_id, struct account *to, unsigned int flags, const 
   packet_set_string(response, ENDIAN_LITTLE, username); // username
   packet_set_string(response, ENDIAN_LITTLE, data); // data
 
-  connection_response_append(account_connection_get(to), response);
+  net_connection_response_append(account_connection_get(to), response);
   return 1;
 }

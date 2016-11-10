@@ -66,5 +66,5 @@ void packet_d2gs_d2gs_pickupbufferitem(struct connection *conn, struct packet *r
   // YOU NEED TO REMOVE THIS LINE FOR THE PACKET TO BE ENABLED.
   EINA_LOG_CRIT("packet_d2gs_d2gs_pickupbufferitem not yet implemented."); packet_free(response); return;
 
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }

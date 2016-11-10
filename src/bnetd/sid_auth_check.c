@@ -166,5 +166,5 @@ void packet_bnetd_sid_auth_check(struct connection *conn, struct packet *request
   free(packet.cd_key_owner_name);
   free(packet.exe_information);
   
-  connection_response_append(conn, response);
+  net_connection_response_append(conn, response);
 }
